@@ -1,0 +1,92 @@
+doctype html
+html
+  head
+    title 붓싼 투어
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, user-scalable=no')
+    script.
+      function date() {
+      var time=document.getElementById("time");
+      var now= new Date();
+      time.innerHTML =
+      now.getFullYear()+"년 "+
+      (now.getMonth()+1)+"월 "+
+      now.getDate()+"일<br>"+
+      now.getHours()+"시 "+
+      now.getMinutes()+"분 "+
+      now.getSeconds()+"초<br>";
+      setTimeout("date()",1000);
+      }
+      window.onload = function() {date();}
+
+
+
+
+    script(language='JavaScript').
+
+      var timerID = null;
+      var timerRunning = false;
+      function stopclock () {
+      if(timerRunning) clearTimeout(timerID);
+      timerRunning = false;
+      }
+      function startclock () {
+      stopclock();
+      showtime();
+      }
+      function showtime() {
+      now = new Date();
+      var CurYear = now.getFullYear();
+      var CurHour = now.getHours();
+      var CurMinute = now.getMinutes();
+      var CurMonth = (now.getMonth()+1);
+      var CurDate = now.getDate();
+      var CurSecond = now.getSeconds();
+      var Hourleft = 23 - CurHour
+      var Minuteleft = 59 - CurMinute
+      var Secondleft = 59 - CurSecond
+      var Monthleft = 11 - CurMonth
+      var Dateleft = 26 - CurDate
+      var Yearleft =  - CurYear
+      var obj = document.getElementById('left_time');
+      event_day = new Date(2017,02,26,11,20,00)
+      if((event_day.getTime() - now.getTime()) > 0){
+      var leftStr = "<div>남은시간 : ";
+      if(Dateleft > 0) leftStr += "<b>"+Dateleft+"</b>일 ";
+      if(Hourleft > 0) leftStr += "<b>"+Hourleft+"</b>시간 ";
+      if(Minuteleft > 0) leftStr += "<b>"+Minuteleft+"</b>분 ";
+      leftStr += "<b>"+Secondleft+"</b>초</div>";
+      obj.innerHTML = leftStr;
+      }
+      else obj.innerHTML = '<div>판매가 종료되었습니다</div>';
+      now = null;
+      timerID = setTimeout("showtime()",1000);
+      timerRunning = true;
+      }
+
+      window.onload = function() {startclock();}
+
+
+    script.
+      var t = new Date(); // 오늘 날짜 객체를 생성합니다.
+       var nowYear = t.getFullYear(); // 오늘 날짜의 연도 정보를 가져옵니다.
+       // 현재 연도에 12월 31일 날짜 객체를 생성합니다.
+       var theDate = new Date(nowYear,11,31)
+       // 연말까지 남은 시간 = 연말 날짜 = 현재 날짜
+       var diffDate = theDate-t;
+       // 밀리초를 일로 계산합니다. // Math.ceil() 지정된 숫자나 표현식의 올림값을 반환
+       var result = Math.ceil( diffDate / (60*1000*60*24));
+       // 남은 일수를 출력합니다.
+       document.write("오늘부터 올해 마지막날까지는 "  + result + " " + "일 남았습니다.");
+  body( bgcolor='#FdddFF' )
+    img(src='', alt='', height='', width='')
+    div
+      hr
+      div#time
+      font
+        u 현재시간
+        br
+        div#left_time
+        hr
+      font
+        br

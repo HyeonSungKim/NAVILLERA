@@ -1,0 +1,30 @@
+extends ../layout
+block content
+
+  artcle
+    //input(type='button' value='목록' onclick='history.back()')
+    table(width='80%' height='400' align='center' border='1')
+      tr(align='center')
+        td(width='15%' style='font-weight:bold') 제목
+          td(width='30' height='30')
+            font(size='5' color='cyen')= topic.title
+      tr(align='center')
+        td(style='font-weight:bold') 내용
+          td(width='30' height='300')
+            = topic.des
+      tr(align='center')
+        td(style='font-weight:bold') 작성자
+          td(width='30' height='20')
+            = topic.author
+
+    br
+    div(align='center')
+      if user.username == topic.author
+        a(href='/topic/'+topic.id+'/edit')
+          input.btn.btn-info(type='button' value='글수정')
+
+        a(href='/topic/'+topic.id+'/delete')
+          input.btn.btn-info(type='button' value='글삭제' onclick='delete()')
+
+      a(href='/topic/list')
+        input.btn.btn-info(type='button' value='목록')

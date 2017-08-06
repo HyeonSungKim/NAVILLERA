@@ -1,0 +1,121 @@
+doctype html
+doctype frameset
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, user-scalable=no')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+
+
+
+
+    script.
+      function date() {
+      var time=document.getElementById("time");
+      var now= new Date();
+      time.innerHTML =
+      now.getFullYear()+"년 "+
+      (now.getMonth()+1)+"월 "+
+      now.getDate()+"일<br>"+
+      now.getHours()+"시 "+
+      now.getMinutes()+"분 "+
+      now.getSeconds()+"초<br>";
+      setTimeout("date()",1000);
+      }
+      window.onload = function() {date();}
+
+    script.
+      $(document).ready(function(){
+        $("#myb").click(function(){
+        $("#myModal").modal();
+        });
+      });
+  body
+    //if user
+    nav.navbar.navbar-inverse
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#myNavbar')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.navbar-brand(href='#') GFRIEND Buddy &nbsp
+            if user
+              =user.displayName
+              |님
+            else
+              &nbsp
+        #myNavbar.collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li
+              a(href='/topic')
+                span.glyphicon.glyphicon-home
+                |  Home
+            li.dropdown
+              a.dropdown-toggle(data-toggle='dropdown', href='#')
+                span.glyphicon.glyphicon-list
+                |  Menu
+                span.caret
+              ul.dropdown-menu
+                li
+                  a(href='/topic/upload') 업로드
+                li
+                  a(href='/topic/list')
+                    span.glyphicon.glyphicon-list-alt
+                    |  게시판
+                li
+                  a(href='/topic/gallery')
+                    span.glyphicon.glyphicon-picture
+                    |  갤러리
+            li
+              a(href='#')
+                |  미정1
+            li
+              a(href='#') 미정2
+
+          ul.nav.navbar-nav.navbar-right
+            li
+              if user
+
+                a(href='#' id='myb')
+                  span.glyphicon.glyphicon-book
+                  |  내정보
+                #myModal.modal.fade(role='dialog')
+                  .modal-dialog
+                    // Modal content
+                    .modal-content
+                      .modal-header
+                        button.close(type='button', data-dismiss='modal') ×
+                        h4.modal-title
+                          닉네임 :
+                          = user.displayName
+                      .modal-body
+                        | ID :
+                        = user.username
+
+                      .modal-footer
+                        button.btn.btn-default(type='button', data-dismiss='modal') Close
+
+                .ui-content(data-role='main')
+                  a.ui-btn.ui-btn-inline.ui-corner-all(href='#myPopup', data-rel='popup')
+                    #myPopup(data-role='popup')
+                    
+              else
+                a(href='/auth/register')
+                  span.glyphicon.glyphicon-user
+                  |  Sign Up
+            li
+              if user
+                a(href='/auth/logout')
+                  span.glyphicon.glyphicon-log-out
+                  |  Logout
+              else
+                a(href='/auth/login')
+                  span.glyphicon.glyphicon-log-in
+                  |  Login
+
+
+
+    block content

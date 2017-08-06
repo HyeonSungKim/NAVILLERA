@@ -11,6 +11,16 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
-    "jade": "^1.11.0"
+    "express-mysql-session": "^1.2.0",
+    "express-session": "^1.14.2",
+    "jade": "^1.11.0",
+    "multer": "^1.2.0",
+    "node-mysql": "^0.4.2",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "pbkdf2-password": "^1.2.1",
+    "session-file-store": "^0.2.2",
+    "socket.io": "^1.7.2"
   }
 }

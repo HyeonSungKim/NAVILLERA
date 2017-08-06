@@ -1,0 +1,23 @@
+extends ../layout
+block content
+  artcle(align='center')
+    form(action='/topic/add' method='post' )
+      table(align='center' border='0')
+        tr
+          td
+            .form-group
+              input(type='text' name='title' class='form-control' placeholder='제목')
+        tr
+          td
+            .form-group
+            textarea(name='des' cols='30' rows='10' class='form-control' placeholder='내용')
+        tr
+
+          td
+            br
+            |작성자 : &nbsp
+            = user.username
+      p
+      input.btn.btn-info(type='submit' value='작성완료')
+      &nbsp&nbsp&nbsp
+      input.btn.btn-info(type='button' value='작성취소' onclick='history.back()')

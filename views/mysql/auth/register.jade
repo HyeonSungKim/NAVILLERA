@@ -1,0 +1,52 @@
+extends ../layout
+block content
+
+  script.
+    function check(){
+      var vr = document.join;
+
+        if(vr.username.value==""){
+          alert("input username!!!");
+          vr.username.focus();
+          return;
+        }
+
+        if(vr.displayName.value==""){
+          alert("input nickname!!!");
+          vr.displayName.focus();
+          return;
+        }
+
+        if(vr.password.value==""){
+          alert("input password!!!");
+          vr.password.focus();
+          return;
+        }
+        vr.submit();
+      }
+
+
+
+
+  table(align='center')
+    tr
+      td
+        h1(align='center') 회원가입
+        br
+        form(name='join', align='center' action='/auth/register', method='post')
+          .input-group
+            span.input-group-addon
+              i.glyphicon.glyphicon-user
+            input#email.form-control(type='text', name='username', placeholder='UserName')
+          .input-group
+            span.input-group-addon
+              i.glyphicon.glyphicon-lock
+            input#password.form-control(type='password', name='password', placeholder='Password')
+          .input-group
+            span.input-group-addon
+              i.glyphicon.glyphicon-sunglasses
+            input#password.form-control(type='text', name='displayName', placeholder='nickName')
+          p
+            br
+            input.btn.btn-info(type='submit', value='가입' onclick='check()')
+            input.btn.btn-info(type='button', value='취소' onclick='history.back()')

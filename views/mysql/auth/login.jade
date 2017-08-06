@@ -1,0 +1,39 @@
+extends ../layout
+block content
+
+
+  script.
+    function check(){
+      var vr = document.login;
+        if(vr.username.value==""){
+          alert("input id!!!"); return;
+        }
+        else if(vr.password.value==""){
+          alert("input password!!!"); return;
+        }
+
+      }
+
+
+
+  table(align='center')
+    tr
+      td
+        h1(align='center') 로그인
+        br
+        form(name='login', align='center' action='/auth/login', method='post')
+          .input-group
+            span.input-group-addon
+              i.glyphicon.glyphicon-user
+            input#email.form-control(type='text', name='username', placeholder='UserName')
+          .input-group
+            span.input-group-addon
+              i.glyphicon.glyphicon-lock
+            input#password.form-control(type='password', name='password', placeholder='Password')
+          p
+            br
+            input.btn.btn-info(type='submit', value='로그인' onclick='check()')
+            input.btn.btn-info(type='reset', value='다시입력')
+          p
+            br
+        //a(href='/auth/facebook') facebook인증 준비중

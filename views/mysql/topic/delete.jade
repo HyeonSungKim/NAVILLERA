@@ -1,0 +1,14 @@
+extends ../layout
+block content
+  artcle
+    if user.username == topic.author
+      h1= 'Delete? '+topic.title
+      form(action='/topic/'+topic.id+'/delete' method='post')
+        p
+          input(type='submit' value='YES')
+          &nbsp &nbsp
+          input(type='button' value='No' onclick='window.history.back()')
+    else
+      script(type='text/javascript').
+        window.alert('작성자만 삭제가능')
+        window.history.back(-1)

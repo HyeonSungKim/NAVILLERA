@@ -1,0 +1,12 @@
+extends ../layout
+block content
+
+
+  artcle
+    if user
+      each topi in topic
+        if (user.username == topi.username)
+          table
+            tr d
+              td
+                img(src='/'+topi.path class='img-rounded' style='width:150px;height:150px;margin:5px' )

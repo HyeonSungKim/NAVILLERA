@@ -1,0 +1,104 @@
+extends ../layout
+block content
+  script.
+
+    function getSize(){
+      var maxSize = 1024 * 1024 * 5; //5MB limit
+      var fSExt = new Array('Bytes', 'KB', 'MB', 'GB');
+      var i=0;
+      while(maxSize>900){
+        maxSize/=1024;
+        i++;
+      }
+      mxSize = (Math.round(maxSize*100)/100)+' '+fSExt[i];
+
+      if(window.ActiveXObject){
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var filepath = document.upload.userfile.value;
+        var thefile = fso.getFile(filepath);
+        var sizeinbytes = thefile.size;
+
+        var fSize = sizeinbytes;
+        var i=0;
+        while(fSize>900){
+        	fSize/=1024;
+        	i++;
+        }
+        fSize = (Math.round(fSize*100)/100)+' '+fSExt[i];
+        if(sizeinbytes > maxSize){
+          alert(fSize+"업로드 가능한 용량을 초과하였습니다. (최대 "+mxSize+")");
+          return false;
+        }
+        else{
+          alert(fSize+"업로드 가능.");
+          upload.submit();
+        //  return true;
+        }
+      }else{
+        var sizeinbytes = document.getElementById('userfile').files[0].size;
+
+        var fSize = sizeinbytes;
+        var i=0;
+        while(fSize>900){
+        	fSize/=1024;
+        	i++;
+        }
+        fSize = (Math.round(fSize*100)/100)+' '+fSExt[i];
+        //if(sizeinbytes > maxSize){
+        if(fSize > mxSize){
+          alert(fSize+" 업로드 가능한 용량을 초과하였습니다! (최대 "+mxSize+")");
+          return false;
+        }
+        else{
+          alert(fSize+"업로드 가능!");
+          upload.submit();
+        //  return true;
+        }
+      }
+    }
+
+    function check(obj){
+      filepath = obj.lastIndexOf('.');
+      filepoint = obj.substring(filepath+1,obj.length);
+      filetype = filepoint.toLowerCase();
+      if (filetype == 'gif'|| filetype == 'jpg' || filetype == 'jpeg'){
+
+          return true;
+      }
+      else if(!obj){
+        alert('파일을 등록해 주세요.');
+      }
+      else{
+        alert('업로드 불가능한 확장자입니다.');
+        location.reload('/topic/upload');
+        return false;
+      }
+    }
+
+  style.
+    table{
+      margin-top: 20%;
+    }
+
+  artcle
+    if user
+      table(align='center')
+        tr
+          td
+
+            h4(align='center')업로드 가능한 용량은 5MB까지 입니다.
+            p
+            form(name='upload' action='/topic/upload' method='post' enctype="multipart/form-data" )
+              p
+                input.btn.btn-danger(type='file' name='userfile' id='userfile' multiple="" value='파일 선택' accept="image/*" onchange='check(this.value)')
+              p
+                br
+                center
+                  input.btn.btn-info(type='button' value='업로드' onclick='getSize()')
+                  &nbsp&nbsp&nbsp&nbsp&nbsp
+                  a(href='/topic')
+                    input.btn.btn-info(type='button' value='취소')
+    else
+      script(type='text/javascript').
+        window.alert('로그인이 필요한 서비스입니다. \n로그인 또는 회원가입해주세요!!')
+        window.history.back(-1)

@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+    <title>채팅방</title>
+    <meta charset='utf-8'/>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { height: 90%; font: 13px Helvetica, Arial; }
+      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+      form input { border: 0; padding: 10px; width: 85%; margin-right: .5%; }
+      form button { width: 14%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+    </style>
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <form action="">
+      <input id="msg" autocomplete="off" /><button>Send</button>
+    </form>
+<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+<script>
+  //var username = getElementById('user.displayName');
+  var socket = io().connect('');;
+  $('form').submit(function(){
+    socket.emit('from message', $('#msg').val()); //from
+    $('#msg').val('');
+    return false;
+  });
+  socket.on('to message', function(msg){  //to
+    $('#nickname').val(msg.nickname);
+    $('#messages').append($('<li>').text(msg));
+  });
+</script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+extends ../layout
+block content
+
+  script.
+    $(document).ready(function(){
+        $("#myb").click(function(){
+        $("#myModal").modal();
+        });
+    });
+
+  artcle
+    if user
+      div(class='container')
+        div(class='row')
+          div(class='col-xs-12')
+            div(class='thumbnails' style='height:210px' align='center')
+              each topi in topic
+                //each topi
+                if (user.username == topi.username)
+
+                  a(href='/'+topi.path  title=img data-gallery )
+                    img(src='/'+topi.path class='img-rounded' style='width:150px;height:150px;margin:5px' )
+
+
+
+
+    else
+      script(type='text/javascript').
+        window.alert('로그인이 필요한 서비스입니다. \n로그인 또는 회원가입해주세요!!')
+        window.history.back(-1)

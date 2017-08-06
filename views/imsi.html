@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+  <head>
+    <title>붓싼 투어</title>
+    <meta charset='utf-8'/>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <script>
+    function date() {
+      var time=document.getElementById("time");
+      var now= new Date();
+      time.innerHTML =
+      now.getFullYear()+"년 "+
+      (now.getMonth()+1)+"월 "+
+      now.getDate()+"일<br>"+
+      now.getHours()+"시 "+
+      now.getMinutes()+"분 "+
+      now.getSeconds()+"초<br>";
+      setTimeout("date()",1000);
+    }
+    window.onload = function() {date();}
+    </script>
+
+    <SCRIPT language=JavaScript>
+
+      function getTime() {
+      now = new Date();
+      dday = new Date(2017,02,26,11,20,00);
+      // 원하는 날짜, 시간 정확하게 초단위까지 기입.
+      days = (dday - now) / 1000 / 60 / 60 / 24;
+      daysRound = Math.floor(days);
+      hours = (dday - now) / 1000 / 60 / 60 - (24 * daysRound);
+      hoursRound = Math.floor(hours);
+      minutes = (dday - now) / 1000 /60 - (24 * 60 * daysRound) - (60 * hoursRound);
+      minutesRound = Math.floor(minutes);
+      seconds = (dday - now) / 1000 - (24 * 60 * 60 * daysRound) - (60 * 60 * hoursRound) - (60 * minutesRound);
+      secondsRound = Math.round(seconds);
+
+      document.getElementById("counter1").innerHTML = hoursRound;
+      document.getElementById("counter2").innerHTML = minutesRound;
+      document.getElementById("counter3").innerHTML = secondsRound;
+      newtime = window.setTimeout("getTime();", 1000);
+      }
+
+    </SCRIPT>
+
+      <STYLE type=text/css>
+
+      /*타임*/
+      #count {
+      	height: 167px;
+      	color: #000;
+      	padding-left: 100px;
+      	padding-top:130px;
+      	background-repeat: no-repeat;
+      }
+      #bt {
+      	height: 16px;
+      	width: 49;
+      	padding-left: 100px;
+      	padding-top: 0px;
+      }
+      </STYLE>
+
+      <TABLE cellSpacing=0 cellPadding=0>
+      <TBODY>
+      <TR>
+      <TD height=167 width=256>
+      <DIV id=count><SPAN style="FONT: bold 12px Gulim; COLOR: #000" id=counter1></SPAN><FONT style="FONT-FAMILY: '굴림'; size: 7px">시간</FONT> <SPAN style="FONT: bold 12px Gulim; COLOR: #000" id=counter2></SPAN><FONT style="FONT-FAMILY: '굴림'; size: 7px">분</FONT> <SPAN style="FONT: bold 12px Gulim; COLOR: #000" id=counter3></SPAN><FONT style="FONT-FAMILY: '굴림'; size: 7px">초 남음</FONT>
+      <SPAN style="padding-left:30px;"></SPAN></div>
+      </TD></TR></TBODY></TABLE>
+
+
+      <SCRIPT>getTime()</SCRIPT>
+  </head>
+  <body>
+    <img src="" alt="" height="" width=""/>
+    <div><hr><font><u>현재시간</u><br><span id="time"></span><hr></div>
+  </body>
+</html>

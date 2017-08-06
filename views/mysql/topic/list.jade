@@ -1,0 +1,43 @@
+extends ../layout
+block content
+  style.
+    .cut {
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      word-wrap:normal;
+      width:90px;
+      overflow:hidden;
+    }
+    div{
+      margin-right:20px;
+    }
+  artcle
+    br
+    if user
+      each row in rows
+        h3(align='center') 총 게시물 : &nbsp
+          = row.cnt
+      table.table.table-hover( border='1' align='center')
+        th 글번호
+        th 제목
+        th 작성자
+        th 작성일
+          each topic in topics
+            tr
+              td= topic.id
+              td
+                p.cut
+                  a(href='/topic/'+topic.id+'/view')= topic.title
+              td= topic.author
+              td= topic.date
+
+    else
+      script(type='text/javascript').
+        window.alert('로그인이 필요한 서비스입니다. \n로그인 또는 회원가입해주세요!!')
+        window.history.back(-1)
+  p
+  ul
+    if user
+      div(align='right')
+        a(href='/topic/add')
+          input.btn.btn-info(type='button' value='글쓰기')

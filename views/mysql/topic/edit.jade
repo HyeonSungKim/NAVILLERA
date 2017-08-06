@@ -1,0 +1,36 @@
+extends ../layout
+block content
+  script.
+    function ar(){
+      alert('수정 완료!');
+    }
+
+  artcle(align='center')
+    if user.username == topic.author
+      h2 글수정
+      br
+      form(action='/topic/'+topic.id+'/edit' method='post')
+        table(align='center' border='0')
+          tr
+            td
+              .form-group
+                input(type='text' name='title' class='form-control' value=topic.title )
+          tr
+            td
+              .form-group
+              textarea(name='des' cols='30' rows='10' class='form-control')
+                =topic.des
+          tr
+            td
+              br
+              |작성자 : &nbsp
+              = user.username
+        p
+        input.btn.btn-info(type='submit' value='수정완료' onclick='ar()')
+        &nbsp&nbsp&nbsp
+        input.btn.btn-info(type='button' value='수정취소' onclick='history.back()')
+
+    else
+      script(type='text/javascript').
+        window.alert('작성자만 수정가능')
+        window.history.back(-1)

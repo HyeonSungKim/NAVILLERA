@@ -1,0 +1,63 @@
+extends ../layout
+block content
+
+  style.
+
+    p {font-size: 16px;}
+    .margin {margin-bottom: 45px;}
+    .bg-1 {
+      background-color: #ffcccc; /* Green */
+      color: #ffffff;
+    }
+    .bg-2 {
+      background-color: #474e5d; /* Dark Blue */
+      color: #ffffff;
+    }
+    .bg-3 {
+      background-color: #ffffff; /* White */
+      color: #555555;
+    }
+    .bg-4 {
+      background-color: #2f2f2f; /* Black Gray */
+      color: #fff;
+    }
+
+
+
+
+  //if user
+  .container-fluid.bg-1.text-center
+    h3.margin GFRIEND
+    img.img-responsive.img-rounded.margin(src='/uploads/GF나이츠.jpg', style='display:inline', width='350', height='350')
+    h3 2017.03.06 ComeBack!!
+  // Second Container
+  .container-fluid.bg-2.text-center
+    h3.THE 4th Mini Album
+    h3 THE AWAKENEING
+    img(src="/uploads/GF밀리터리.jpg" class="img-responsive img-rounded margin" style="display:inline" width="350" height="350")
+
+  // Third Container (Grid)
+  .container-fluid.bg-3.text-center
+    h3.margin Fighting GFRIEND and Buddy!!
+    br
+    .row
+      .col-sm-4
+
+    img(src="/uploads/은하x예린.gif" class="img-responsive img-rounded margin" style="display:inline" width="350" height="350")
+
+
+
+  center
+    h1
+      | 현재시간
+      br
+      h3
+        span#time
+  // Footer
+  footer.container-fluid.bg-4.text-center
+    p
+      | Official FanCafe is &nbsp
+      a(href='http://cafe.daum.net/gfrdofficial') Click here!
+
+
+  
